@@ -41,7 +41,7 @@ public class BoardEntity {
     public static BoardEntity toSaveEntity(BoardDTO boardDTO, String filePath) {
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setW_time(boardDTO.getW_time());
-        boardEntity.setPhoto_post(boardDTO.getPhoto_post());
+        boardEntity.setPhoto_post(filePath);
         boardEntity.setTitle_post(boardDTO.getTitle_post());
         boardEntity.setContent_post(boardDTO.getContent_post());
         boardEntity.setId_user(boardDTO.getId_user());

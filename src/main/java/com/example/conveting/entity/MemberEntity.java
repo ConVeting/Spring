@@ -1,12 +1,11 @@
 package com.example.conveting.entity;
 
 import com.example.conveting.dto.MemberDTO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Setter
@@ -24,6 +23,11 @@ public class MemberEntity {
     @Column(name = "password", length = 20, nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ScheduleEntity> scheduleEntities;
+
+    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PetEntity> petEntities;
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setIdUser(memberDTO.getIdUser());
