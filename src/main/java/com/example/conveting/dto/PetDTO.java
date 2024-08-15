@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class PetDTO {
     private String species;
     private boolean sex;
     private boolean neuter;
+    private List<String> allergies;
 
     public static PetDTO toPetDTO(PetEntity petEntity, String idUser) {
         PetDTO petDTO = new PetDTO();
