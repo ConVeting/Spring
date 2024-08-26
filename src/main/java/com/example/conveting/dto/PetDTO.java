@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @ToString
 public class PetDTO {
     private String idUser;
-    private String name_pet;
+    private String namePet;
     private Date birth;
-    private double weight;
+    private BigDecimal weight;
     private String species;
     private boolean sex;
     private boolean neuter;
@@ -24,7 +25,7 @@ public class PetDTO {
     public static PetDTO toPetDTO(PetEntity petEntity, String idUser) {
         PetDTO petDTO = new PetDTO();
         petDTO.setIdUser(petEntity.getIdUser());
-        petDTO.setName_pet(petEntity.getName_pet());
+        petDTO.setNamePet(petEntity.getNamePet());
         petDTO.setBirth(petEntity.getBirth());
         petDTO.setWeight(petEntity.getWeight());
         petDTO.setSpecies(petEntity.getSpecies());

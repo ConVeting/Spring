@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface PetAllergyRepository extends JpaRepository<PetAllergyEntity, PetAllergyId> {
     @Transactional
-    void deleteByPetId(String idUser, String name_pet);
+    void deleteByIdUserAndNamePet(String idUser, String namePet);
 }

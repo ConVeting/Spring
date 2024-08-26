@@ -6,15 +6,15 @@ import java.util.Objects;
 public class PetAllergyId implements Serializable {
 
     private String idUser;
-    private String name_pet;
+    private String namePet;
     private String name_allergy;
 
     public PetAllergyId() {
     }
 
-    public PetAllergyId(String idUser, String name_pet, String name_allergy) {
+    public PetAllergyId(String idUser, String namePet, String name_allergy) {
         this.idUser = idUser;
-        this.name_pet = name_pet;
+        this.namePet = namePet;
         this.name_allergy = name_allergy;
     }
 
@@ -26,12 +26,12 @@ public class PetAllergyId implements Serializable {
         this.idUser = idUser;
     }
 
-    public String getName_pet() {
-        return name_pet;
+    public String getNamePet() {
+        return namePet;
     }
 
-    public void setName_pet(String name_pet) {
-        this.name_pet = name_pet;
+    public void setNamePet(String namePet) {
+        this.namePet = namePet;
     }
 
     public String getName_allergy() {
@@ -48,12 +48,12 @@ public class PetAllergyId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         PetAllergyId that = (PetAllergyId) o;
         return Objects.equals(idUser, that.idUser) &&
-                Objects.equals(name_pet, that.name_pet) &&
+                Objects.equals(namePet, that.namePet) &&
                 Objects.equals(name_allergy, that.name_allergy);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, name_pet, name_allergy);
+        return Objects.hash(idUser, namePet, name_allergy);
     }
 }

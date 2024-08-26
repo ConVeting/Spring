@@ -1,27 +1,55 @@
 package com.example.conveting.entity;
 
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pet_allergy")
+@IdClass(PetAllergyId.class)
 public class PetAllergyEntity {
-    @EmbeddedId
-    private PetAllergyId id;
+
+    @Id
+    private String idUser;
+
+    @Id
+    private String namePet;
+
+    @Id
+    private String name_allergy;
 
     public PetAllergyEntity() {
     }
 
-    public PetAllergyEntity(PetAllergyId id) {
-        this.id = id;
+    public PetAllergyEntity(String idUser, String namePet, String name_allergy) {
+        this.idUser = idUser;
+        this.namePet = namePet;
+        this.name_allergy = name_allergy;
     }
 
-    public PetAllergyId getId() {
-        return id;
+    // Getters and Setters
+    public String getIdUser() {
+        return idUser;
     }
 
-    public void setId(PetAllergyId id) {
-        this.id = id;
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getNamePet() {
+        return namePet;
+    }
+
+    public void setName_pet(String namePt) {
+        this.namePet = namePet;
+    }
+
+    public String getName_allergy() {
+        return name_allergy;
+    }
+
+    public void setName_allergy(String name_allergy) {
+        this.name_allergy = name_allergy;
     }
 }

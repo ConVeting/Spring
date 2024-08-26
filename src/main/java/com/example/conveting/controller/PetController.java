@@ -43,7 +43,7 @@ public class PetController {
 
 
     @PutMapping("/{petname}")
-    public ResponseEntity<PetEntity> updatePet(@PathVariable("petname") String name_pet, @RequestBody PetDTO petDTO) {
+    public ResponseEntity<PetEntity> updatePet(@PathVariable("petname") String namePet, @RequestBody PetDTO petDTO) {
         // MemberEntity를 가져옵니다.
         MemberEntity memberEntity = memberService.findByIdUser(petDTO.getIdUser());
         if (memberEntity == null) {
@@ -52,13 +52,13 @@ public class PetController {
 
         // PetEntity를 생성하고 업데이트합니다.
         PetEntity petEntity = PetEntity.toSaveEntity(petDTO, memberEntity);
-        PetEntity updatedPet = petService.updatePet(name_pet, petEntity, petDTO.getAllergies());
+        PetEntity updatedPet = petService.updatePet(namePet, petEntity, petDTO.getAllergies());
         return ResponseEntity.ok(updatedPet);
     }
 
     @DeleteMapping("/{petname}")
-    public ResponseEntity<String> deletePet(@PathVariable("petname") String name_pet) {
-        petService.deletePet(name_pet);
+    public ResponseEntity<String> deletePet(@PathVariable("petname") String namePet) {
+        petService.deletePet(namePet);
         return ResponseEntity.ok("Pet deleted successfully");
     }
 }

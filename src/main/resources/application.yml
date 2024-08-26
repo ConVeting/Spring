@@ -19,3 +19,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate.transaction.jta.platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
+
+zoom:
+  client-id: "tUFxy1zsRASh2p90BEhWGw"
+  client-secret: "tUFxy1zsRASh2p90BEhWGw"
+  account-id: "IVu6_8rcTbmEz7daYANidQ"

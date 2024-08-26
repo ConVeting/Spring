@@ -28,7 +28,7 @@ public class ScheduleEntity {
     private String contentSchedule;
 
     @ManyToOne
-    @JoinColumn(name = "idUser", insertable = false, updatable = false)
+    @JoinColumn(name = "id_user", insertable = false, updatable = false)
     private MemberEntity memberEntity;  // Users 엔티티와의 연관관계
 
     public static ScheduleEntity toSaveEntity(ScheduleDTO scheduleDTO){

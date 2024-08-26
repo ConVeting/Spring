@@ -29,18 +29,17 @@ public class PetService {
         PetEntity savedPet = petRepository.save(petEntity);
         for (String allergy : allergies) {
             PetAllergyEntity petAllergyEntity = new PetAllergyEntity(
-                    new PetAllergyId(savedPet.getIdUser(), savedPet.getName_pet(), allergy)
-            );
+                   savedPet.getIdUser(), savedPet.getNamePet(), allergy);
             petAllergyRepository.save(petAllergyEntity);
         }
         return savedPet;
     }
 
-    public PetEntity updatePet(String name_pet, PetEntity petDetails, List<String> allergies) {
-        PetEntity petEntity = petRepository.findByName(name_pet);
+    public PetEntity updatePet(String namePet, PetEntity petDetails, List<String> allergies) {
+        PetEntity petEntity = petRepository.findByNamePet(namePet);
 
         if (petEntity != null) {
-            petEntity.setName_pet(petDetails.getName_pet());
+            petEntity.setNamePet(petDetails.getNamePet());
             petEntity.setBirth(petDetails.getBirth());
             petEntity.setWeight(petDetails.getWeight());
             petEntity.setSpecies(petDetails.getSpecies());
@@ -48,31 +47,31 @@ public class PetService {
             petEntity.setNeuter(petDetails.isNeuter());
             PetEntity updatedPet = petRepository.save(petEntity);
 
-            petAllergyRepository.deleteByPetId(updatedPet.getIdUser(), updatedPet.getName_pet());
+            petAllergyRepository.deleteByIdUserAndNamePet(updatedPet.getIdUser(), updatedPet.getNamePet());
             for (String allergy : allergies) {
                 PetAllergyEntity petAllergyEntity = new PetAllergyEntity(
-                        new PetAllergyId(updatedPet.getIdUser(), updatedPet.getName_pet(), allergy)
-                );
+                     updatedPet.getIdUser(), updatedPet.getNamePet(), allergy);
                 petAllergyRepository.save(petAllergyEntity);
             }
 
             return updatedPet;
         } else {
-            throw new RuntimeException("Pet not found with name: " + name_pet);
+            throw new RuntimeException("Pet not found with name: " + namePet);
         }
     }
 
-    public void deletePet(String name_pet) {
+    public void deletePet(String namePet) {
 
-        Optional<PetEntity> optionalPetEntity = petRepository.findByNamePet(name_pet);
+        PetEntity petEntity = petRepository.findByNamePet(namePet);
 
 
-        if (optionalPetEntity.isPresent()) {
-            PetEntity existingPet = optionalPetEntity.get();
-            petAllergyRepository.deleteByPetId(existingPet.getIdUser(), existingPet.getName_pet());
-            petRepository.delete(existingPet);
+        if (petEntity != null) {
+            // Pet ID를 사용하여 알러지 정보를 먼저 삭제합니다.
+            petAllergyRepository.deleteByIdUserAndNamePet(petEntity.getIdUser(), petEntity.getNamePet());
+            // 그런 다음 펫 엔터티를 삭제합니다.
+            petRepository.delete(petEntity);
         } else {
-            throw new RuntimeException("Pet not found with name: " + name_pet);
+            throw new RuntimeException("Pet not found with name: " + namePet);
         }
     }
 }

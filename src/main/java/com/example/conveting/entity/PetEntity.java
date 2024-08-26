@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -18,14 +19,14 @@ public class PetEntity {
     private String idUser;
 
     @Id
-    @Column(length = 10)
-    private String name_pet;
+    @Column(name = "name_pet", length = 10)
+    private String namePet;
 
     @Temporal(TemporalType.DATE)
     private Date birth;
 
     @Column(precision = 5, scale = 2)
-    private double weight;
+    private BigDecimal weight;
 
     @Column(length = 30)
     private String species;
@@ -42,7 +43,7 @@ public class PetEntity {
     public static PetEntity toSaveEntity(PetDTO petDTO, MemberEntity memberEntity) {
         PetEntity petEntity = new PetEntity();
         petEntity.setIdUser(petDTO.getIdUser());
-        petEntity.setName_pet(petDTO.getName_pet());
+        petEntity.setNamePet(petDTO.getNamePet());
         petEntity.setBirth(petDTO.getBirth());
         petEntity.setWeight(petDTO.getWeight());
         petEntity.setSex(petDTO.isSex());

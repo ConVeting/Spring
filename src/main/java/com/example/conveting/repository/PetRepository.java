@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface PetRepository extends JpaRepository<PetEntity, PetId> {
-    PetEntity findByName(String name_pet);
-    void deleteByName(String name_pet);
-    Optional<PetEntity> findByNamePet(String name_pet);
+    PetEntity findByNamePet(String namePet);
+    void deleteByNamePet(String namePet);
 }

@@ -53,4 +53,8 @@ public class MemberController {
             return "login";
         }
     }
+    @GetMapping("/main")
+    public String mainPage() {
+        return "main";  // 로그인 성공 후 이동할 메인 페이지
+    }
 }
